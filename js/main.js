@@ -9,8 +9,14 @@ $(document).ready(function() {
 
 getResults = function() {
   event.preventDefault(); // a moment's silence for Gui's dignity
-  var result = '<h2>Tada!</h2>'
-  results.append(result);
+
+  $.get('https://api.spotify.com/v1/search?q=' + searchBox.val() + '&type=' + typeSelect.val(), function(response) {
+    debugger;
+  })
+
+
+  // var result = '<h2>Tada!</h2>'
+  // results.append(result);
 }
 
   submitButton.on('click', getResults)
