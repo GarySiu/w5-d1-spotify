@@ -36,5 +36,6 @@ $(document).ready(function() {
   typeSelect.on('change', getResults);
   searchBox.on('keydown', function() { tempSearch = searchBox.val() }); // Let's make sure something is actually typed before spamming AJAX calls.
   searchBox.on('keyup', cautiousGetResults); // possibly a terrible idea because there will be a LOT of API calls but looks like Google Instant now!
-
+  searchBox.on('blur', function() {searchBox.fadeTo('slow', 0.3)}); // I don't like this but hey, free bonus task!
+  searchBox.on('focus', function() {searchBox.fadeTo('slow', 1)});
 })
