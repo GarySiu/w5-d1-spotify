@@ -1,7 +1,12 @@
 body {
   /*background: hotpink;*/
+  font-family: helvetica;
 }
 
 #results {
   padding-top: 20px;
+}
+
+.search-results {
+  padding-top: 15px;
 }
