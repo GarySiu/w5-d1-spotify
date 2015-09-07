@@ -9,28 +9,32 @@ $(document).ready(function() {
 
 getResults = function() {
   event.preventDefault(); // a moment's silence for Gui's dignity
+  results.empty();
+  if(typeSelect.val() === 'default') {
+    results.append('<div>Please pick a search type</div>');
+    return;
+  }
 
   $.get('https://api.spotify.com/v1/search?q=' + searchBox.val() + '&type=' + typeSelect.val(), function(response) {
-    // debugger;
     switch(typeSelect.val()) {
       case 'artist':
         // debugger;
         $.each(response['artists'].items, function(index, item) {
-          console.log(item.name);
+          results.append('<div>' + item.name + '</div>');
         })
-        break;
+      break;
 
       case 'album':
         $.each(response['albums'].items, function(index, item) {
-          console.log(item.name);
-        })
-      break;
-      case 'track':
-        $.each(response['tracks'].items, function(index, item) {
-          console.log(item.name);
+          results.append('<div>' + item.name + '</div>');
         })
       break;
 
+      case 'track':
+        $.each(response['tracks'].items, function(index, item) {
+          results.append('<div>' + item.name + '</div>');
+        })
+      break;
     }
   })
 
@@ -39,6 +43,8 @@ getResults = function() {
   // results.append(result);
 }
 
-  submitButton.on('click', getResults)
+  submitButton.on('click', getResults);
+  typeSelect.on('change', getResults);
+  searchBox.on('change', getResults);
 
 })
