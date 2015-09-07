@@ -11,7 +11,27 @@ getResults = function() {
   event.preventDefault(); // a moment's silence for Gui's dignity
 
   $.get('https://api.spotify.com/v1/search?q=' + searchBox.val() + '&type=' + typeSelect.val(), function(response) {
-    debugger;
+    // debugger;
+    switch(typeSelect.val()) {
+      case 'artist':
+        // debugger;
+        $.each(response['artists'].items, function(index, item) {
+          console.log(item.name);
+        })
+        break;
+
+      case 'album':
+        $.each(response['albums'].items, function(index, item) {
+          console.log(item.name);
+        })
+      break;
+      case 'track':
+        $.each(response['tracks'].items, function(index, item) {
+          console.log(item.name);
+        })
+      break;
+
+    }
   })
 
 
