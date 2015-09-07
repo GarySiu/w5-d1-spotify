@@ -16,31 +16,10 @@ getResults = function() {
   }
 
   $.get('https://api.spotify.com/v1/search?q=' + searchBox.val() + '&type=' + typeSelect.val(), function(response) {
-    switch(typeSelect.val()) {
-      case 'artist':
-        // debugger;
-        $.each(response['artists'].items, function(index, item) {
+      $.each(response[ typeSelect.val() + 's'].items, function(index, item) {
           results.append('<div>' + item.name + '</div>');
-        })
-      break;
-
-      case 'album':
-        $.each(response['albums'].items, function(index, item) {
-          results.append('<div>' + item.name + '</div>');
-        })
-      break;
-
-      case 'track':
-        $.each(response['tracks'].items, function(index, item) {
-          results.append('<div>' + item.name + '</div>');
-        })
-      break;
-    }
+      })
   })
-
-
-  // var result = '<h2>Tada!</h2>'
-  // results.append(result);
 }
 
   submitButton.on('click', getResults);
