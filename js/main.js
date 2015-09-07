@@ -8,10 +8,6 @@ $(document).ready(function() {
   var results = $('#results');
   var tempSearch = searchBox.val();
 
-  cautiousGetResults = function() {
-    if(searchBox.val() !== tempSearch) { getResults() }
-  }
-
   getResults = function() {
     event.preventDefault(); // a moment's silence for Gui's dignity
     results.empty();
@@ -25,6 +21,10 @@ $(document).ready(function() {
           results.append('<div>' + item.name + '</div>');
       })
     })
+  }
+
+  cautiousGetResults = function() {
+    if(searchBox.val() !== tempSearch) { getResults() }
   }
 
   submitButton.on('click', getResults);
