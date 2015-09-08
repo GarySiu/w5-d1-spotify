@@ -18,12 +18,13 @@ $(document).ready(function() {
 
     $.get('https://api.spotify.com/v1/search?q=' + searchBox.val() + '&type=' + typeSelect.val(), function(response) {
       $.each(response[ typeSelect.val() + 's'].items, function(index, item) {
-          results.append('<div class="search-results">' + item.name + '</div>');
-          if(typeSelect.val() === 'track') {
-            // debugger;
-            results.append('<img src="' + item.album.images[1].url + '">');
-            results.append('<div><audio src="' + item.preview_url + '" controls></audio></div>');
-          }
+        results.append('<div class="search-results">' + item.name + '</div>');
+        
+        if(typeSelect.val() === 'track') {
+          // debugger;
+          results.append('<img src="' + item.album.images[1].url + '">');
+          results.append('<div><audio src="' + item.preview_url + '" controls></audio></div>');
+        }
       })
     })
   }
